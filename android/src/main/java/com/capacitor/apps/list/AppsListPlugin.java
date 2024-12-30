@@ -15,8 +15,11 @@ import java.util.List;
 @CapacitorPlugin(name = "AppsList")
 public class AppsListPlugin extends Plugin {
 
-    private final AppsList appsList = new AppsList();
+    private AppsList appsList;
 
+    public void load() {
+        appsList = new AppsList(getContext());
+    }
     @PluginMethod
     public void getAppsList(PluginCall call) throws JSONException {
         List<AndroidApp> apps = appsList.getAppsList();
