@@ -1,9 +1,9 @@
 import { registerPlugin } from '@capacitor/core';
-import { PackageListPlugin } from './definitions';
+import { AppsListPlugin } from './definitions';
 
-const PackageList = registerPlugin<PackageListPlugin>('PackageListPlugin', {
-  web: () => import('./web').then((m) => new m.PackageListPluginWeb()),
+const AppsListPlugin = registerPlugin<AppsListPlugin>('AppsList', {
+  web: () => import('./web').then((m) => new m.AppsListPluginWeb()),
 });
 
 export * from './definitions';
-export { PackageList };
+export { AppsListPlugin };

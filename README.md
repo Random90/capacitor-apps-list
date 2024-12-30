@@ -1,2 +1,2 @@
-# capacitor-package-list
-Capacitor plugin that provides list of installed packages on an Android device
+# capacitor-apps-list
+Capacitor plugin that provides list of installed apps on an Android device

@@ -1,7 +1,7 @@
 {
-  "name": "capacitor-package-list",
+  "name": "capacitor-apps-list",
   "version": "0.1",
-  "description": "Capacitor plugin that provides list of installed packages on an Android device",
+  "description": "Capacitor plugin that provides list of installed apps on an Android device",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
@@ -15,10 +15,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Random90/capacitor-package-list.git"
+    "url": "git+https://github.com/Random90/capacitor-apps-list.git"
   },
   "bugs": {
-    "url": "https://github.com/Random90/capacitor-package-list/issues"
+    "url": "https://github.com/Random90/capacitor-apps-list/issues"
   },
   "keywords": [
     "capacitor",
@@ -32,7 +32,7 @@
     "fmt": "npm run eslint -- --fix && npm run prettier -- --write",
     "eslint": "eslint . --ext ts",
     "prettier": "prettier \"**/*.{css,html,ts,js,java}\"",
-    "docgen": "docgen --api PackageListPlugin --output-readme README.md --output-json dist/docs.json",
+    "docgen": "docgen --api AppsListPlugin --output-readme README.md --output-json dist/docs.json",
     "build": "npm run clean && npm run docgen && tsc && rollup -c rollup.config.mjs",
     "clean": "rimraf ./dist",
     "watch": "tsc --watch",

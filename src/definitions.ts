@@ -1,8 +1,8 @@
-export interface PackageListPlugin {
-  getPackageList(): Promise<AndroidPackage[]>;
+export interface AppsListPlugin {
+  getAppsList(): Promise<AndroidApp[]>;
 }
 
-export interface AndroidPackage {
+export interface AndroidApp {
   appName: string;
   packageName: string;
 }
