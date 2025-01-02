@@ -32,7 +32,7 @@ public class AppsListPlugin extends Plugin {
         }
 
         JSObject ret = new JSObject();
-        ret.put("value", jsonArray);
+        ret.put("installedApps", jsonArray);
         call.resolve(ret);
     }
 }
