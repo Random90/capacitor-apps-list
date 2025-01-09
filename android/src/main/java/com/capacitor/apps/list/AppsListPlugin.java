@@ -28,6 +28,8 @@ public class AppsListPlugin extends Plugin {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("appName", app.appName);
             jsonObject.put("packageName", app.packageName);
+            jsonObject.put("category", app.category);
+            jsonObject.put("base64Icon", app.base64Icon);
             jsonArray.put(jsonObject);
         }
 

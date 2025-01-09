@@ -10,6 +10,7 @@ export interface AndroidApp {
   appName: string;
   packageName: string;
   category: AndroidAppCategory;
+  base64Icon: string;
 }
 
 export enum AndroidAppCategory {
