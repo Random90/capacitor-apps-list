@@ -1,4 +1,7 @@
 export interface AppsListPlugin {
+  /**
+   * Get a list of all installed apps on the device. Excludes system apps that were not updated using the Play Store.
+   */
   getAppsList(): Promise<AndroidAppsDto>;
 }
 

@@ -1,4 +1,3 @@
-// browser can't read your notifications.
 import { WebPlugin } from '@capacitor/core';
 import { AndroidAppsDto, AppsListPlugin } from './definitions';
 
@@ -12,6 +11,12 @@ export class AppsListPluginWeb extends WebPlugin implements AppsListPlugin {
     return new Promise<AndroidAppsDto>((resolve) => {
       resolve({
         installedApps: [
+          {
+            appName: 'EXAMPLE APP. THIS IS A WEB BROWSER. THIS IS ONLY FOR DEVELOPMENT PURPOSES.',
+            packageName: 'com.example.not.real.app',
+            category: 1,
+            base64Icon,
+          },
           {
             appName: 'Google Chrome',
             packageName: 'com.android.chrome',
