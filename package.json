@@ -1,6 +1,6 @@
 {
   "name": "capacitor-apps-list",
-  "version": "0.1",
+  "version": "0.1.0",
   "description": "Capacitor plugin that provides list of installed apps on an Android device",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",

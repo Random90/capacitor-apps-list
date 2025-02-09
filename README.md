@@ -1,6 +1,8 @@
 # capacitor-apps-list
 Capacitor plugin that provides list of installed apps on an Android device
 
+Each app constains the name, package name, category number and base64 encoded png icon.
+
 ## Install
 
 ```bash
@@ -34,6 +36,13 @@ export interface AndroidApp {
   base64Icon: string;
 }
 ```
+
+### Displaying the icon
+To display the icon in your application, you can use the following code:
+```html
+    <img [src]="'data:image/png;base64,' + app.base64Icon" alt="app icon" />
+```
+Where `app` is an object of type `AndroidApp`.
 
 ## Important
 This plugin uses the following permissions in your `AndroidManifest.xml`:
