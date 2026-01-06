@@ -23,27 +23,39 @@ public class AppsList {
         packageManager = context.getPackageManager();
     }
 
-    public List<AndroidApp> getAppsList() {
-        int flags = PackageManager.GET_META_DATA | PackageManager.GET_SHARED_LIBRARY_FILES;
-        List<ApplicationInfo> applications = packageManager.getInstalledApplications(flags);
-        List<AndroidApp> apps = new ArrayList<>();
+    int flags = PackageManager.GET_META_DATA | PackageManager.GET_SHARED_LIBRARY_FILES;
 
+    public List<AndroidApp> getAppsList() {
+        List<ApplicationInfo> applications = packageManager.getInstalledApplications(flags);
+        List<String> packageNames = new ArrayList<>();
         for (ApplicationInfo appInfo : applications) {
             if ((appInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0 &&
                     (appInfo.flags & ApplicationInfo.FLAG_UPDATED_SYSTEM_APP) == 0 &&
-                    !appInfo.packageName.equals("com.google.android.apps.messaging")) continue;
-
+                    !appInfo.packageName.equals("com.google.android.apps.messaging")) {
+                continue;
+            }
+            packageNames.add(appInfo.packageName);
+        }
+        return getAppsDetails(packageNames.toArray(new String[0]));
+    }
+    public List<AndroidApp> getAppsDetails(String[] packageNames) {
+        List<AndroidApp> apps = new ArrayList<>();
+        for (String packageName : packageNames) {
+            ApplicationInfo appInfo;
+            try {
+                appInfo = packageManager.getApplicationInfo(packageName, flags);
+            } catch (PackageManager.NameNotFoundException e) {
+                   apps.add(null);
+                continue;
+            }
             Drawable packageIcon = packageManager.getApplicationIcon(appInfo);
             String base64Icon = drawableToBase64(packageIcon);
-
             AndroidApp newApp = new AndroidApp(appInfo.loadLabel(packageManager).toString(), appInfo.packageName, base64Icon);
-
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 newApp.category = appInfo.category;
             }
             apps.add(newApp);
         }
-
         return apps;
     }
 
@@ -64,20 +76,5 @@ public class AppsList {
         resizedBitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
         byte[] byteArray = outputStream.toByteArray();
         return Base64.encodeToString(byteArray, Base64.DEFAULT);
-    }
-}
-
-// @TODO move to new file
-class AndroidApp {
-    public String appName;
-    public String packageName;
-    public int category;
-    public String base64Icon;
-
-    public AndroidApp(String appName, String packageName, String base64Icon) {
-        this.appName = appName;
-        this.packageName = packageName;
-        this.category = -1;
-        this.base64Icon = base64Icon;
     }
 }

@@ -1,16 +1,27 @@
 import { WebPlugin } from '@capacitor/core';
-import { AndroidAppsDto, AppsListPlugin } from './definitions';
+
+import type { AndroidAppsDto, AppsListPlugin } from './definitions';
 
 const base64Icon =
   'iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAABtklEQVR4nO2WvUoDQRDHFwRBQQR9BC2srUSQOHMiRsQuLyD4ABai3qzcS2hhZ2MTQcyOiKKCjb6ChaBgKm2VoKBE1pyJHzk3H/cV3B8MHLtzt/O//e/dCGGxWCyaXD7XJRrEy+e6m8mPHGK4JMbblZOpflOudzQ9oHP1PSItSIUXkrEsGTZMucS4U8nFM5EWXIWjkuGVGN6IYZMYz0lhUTKWdOjryhjs+sWX1lRmRKQFr5AZ1rbwizNHAa7oEIZEGpAM81LBU8PF+0GMj7LgzCVaPLEzSQwv1cL0Waiehzrxc17B8zrjRCLFe2quVzLcfC1weX+8b3XPGQwSUG+eGK+X8mM9sQsghsVftlC4JRVsB9omcB4WEhCAp836/o84jl2AVPgQlgBiuI9dgCUuJMPsx59UYdFVmK2Nh+b/sg7Tei3jtwSfX4u7qAVQwHotE/ymotoBrDtuBUi7A2gt1BL2ELP9Cv1zC1Gn/4ldhVn9IB104MxELcANWC90ohIQGx0vgL55td2A9r3eLDWvtl88Ren1RjFZInHLmLACksbuQNKYWoDQW4SwMbUAsbUIFovFIuLkHXF9GoteFQKSAAAAAElFTkSuQmCC';
 
 export class AppsListPluginWeb extends WebPlugin implements AppsListPlugin {
-  readonly errorMessage = 'Method will never be implemented. What apps are install in the web browser?';
+  getPackagesNamesDetails(options: { packagesNames: string[] }): Promise<AndroidAppsDto> {
+    return new Promise<AndroidAppsDto>((resolve) => {
+      const apps = options.packagesNames.map((packageName) => ({
+        appName: 'Example App for ' + packageName,
+        packageName,
+        category: 1,
+        base64Icon,
+      }));
+      resolve({ androidApps: apps });
+    });
+  }
 
   getAppsList(): Promise<AndroidAppsDto> {
     return new Promise<AndroidAppsDto>((resolve) => {
       resolve({
-        installedApps: [
+        androidApps: [
           {
             appName: 'EXAMPLE APP. THIS IS A WEB BROWSER. THIS IS ONLY FOR DEVELOPMENT PURPOSES.',
             packageName: 'com.example.not.real.app',

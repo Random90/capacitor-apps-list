@@ -1,4 +1,5 @@
 import { registerPlugin } from '@capacitor/core';
+
 import { AppsListPlugin } from './definitions';
 
 const AppsListPlugin = registerPlugin<AppsListPlugin>('AppsList', {
