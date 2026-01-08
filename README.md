@@ -1,7 +1,8 @@
 # capacitor-apps-list
-Capacitor plugin that provides list of installed apps on an Android device
+Capacitor plugin that provides list of installed apps on an Android device. Works with Capacitor v8.
 
 Each app constains the name, package name, category number and base64 encoded png icon.
+
 
 ## Install
 
