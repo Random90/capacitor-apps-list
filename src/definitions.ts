@@ -11,6 +11,11 @@ export interface AppsListPlugin {
    * Get details of specific apps by their package names.
    */
   getPackagesNamesDetails(options: { packagesNames: string[] }): Promise<AndroidAppsDtoNullable>;
+
+  /**
+   * False if not installed OR invalid package name
+   */
+  isPackageInstalled(options: { packageName: string }): Promise<PackageIsInstalled>;
 }
 
 export interface AndroidAppsDtoNullable {
@@ -26,6 +31,10 @@ export interface AndroidApp {
   packageName: string;
   category: AndroidAppCategory;
   base64Icon: string;
+}
+
+export interface PackageIsInstalled {
+  isInstalled: boolean;
 }
 
 /**

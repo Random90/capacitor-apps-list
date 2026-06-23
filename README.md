@@ -67,6 +67,7 @@ Read more here: https://support.google.com/googleplay/android-developer/answer/1
 
 * [`getAppsList()`](#getappslist)
 * [`getPackagesNamesDetails(...)`](#getpackagesnamesdetails)
+* [`isPackageInstalled(...)`](#ispackageinstalled)
 * [Interfaces](#interfaces)
 * [Enums](#enums)
 
@@ -106,6 +107,23 @@ Get details of specific apps by their package names.
 --------------------
 
 
+### isPackageInstalled(...)
+
+```typescript
+isPackageInstalled(options: { packageName: string; }) => Promise<PackageIsInstalled>
+```
+
+False if not installed OR invalid package name
+
+| Param         | Type                                  |
+| ------------- | ------------------------------------- |
+| **`options`** | <code>{ packageName: string; }</code> |
+
+**Returns:** <code>Promise&lt;<a href="#packageisinstalled">PackageIsInstalled</a>&gt;</code>
+
+--------------------
+
+
 ### Interfaces
 
 
@@ -131,6 +149,13 @@ Get details of specific apps by their package names.
 | Prop              | Type                                                          |
 | ----------------- | ------------------------------------------------------------- |
 | **`androidApps`** | <code>(<a href="#androidapp">AndroidApp</a> \| null)[]</code> |
+
+
+#### PackageIsInstalled
+
+| Prop              | Type                 |
+| ----------------- | -------------------- |
+| **`isInstalled`** | <code>boolean</code> |
 
 
 ### Enums

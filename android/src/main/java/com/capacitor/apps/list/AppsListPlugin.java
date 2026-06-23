@@ -1,8 +1,8 @@
 package com.capacitor.apps.list;
 
+import android.content.pm.PackageManager;
 import android.util.Log;
 
-import com.getcapacitor.JSArray;
 import com.getcapacitor.JSObject;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
@@ -40,6 +40,28 @@ public class AppsListPlugin extends Plugin {
         }
         List<AndroidApp> apps = appsList.getAppsDetails(packagesNames.toArray(new String[0]));
         call.resolve(parseStringifyAppList(apps));
+    }
+
+    @PluginMethod
+    public void isPackageInstalled(PluginCall call) {
+        String packageName = call.getString("packageName");
+
+        if (packageName == null || packageName.trim().isEmpty()) {
+            call.resolve(new JSObject().put("isInstalled", false));
+            return;
+        }
+
+        boolean isInstalled;
+
+        PackageManager packageManager = getContext().getPackageManager();
+        try {
+            packageManager.getApplicationInfo(packageName, 0);
+            isInstalled = true;
+        } catch (PackageManager.NameNotFoundException e) {
+            isInstalled = false;
+        }
+
+        call.resolve(new JSObject().put("isInstalled", isInstalled));
     }
 
     private JSObject parseStringifyAppList(List<AndroidApp> apps) throws JSONException {
